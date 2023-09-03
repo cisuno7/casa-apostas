@@ -91,6 +91,29 @@ export default function SideMenu() {
 
                             </ul>
                         </li>
+                        <li className="nav-item menu-closed">
+                        <a href="#" className="nav-link">
+                                <i className="nav-icon fas fa-cog"></i> 
+                                <p>
+                                    Máquinas
+                                    <i className="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul className="nav nav-treeview">
+                            <li className="nav-item">
+                                    <Link to="/maquinas/novo" className="nav-link">
+                                        <i className="fas fa-plus nav-icon"></i>
+                                        <p>Adicionar</p>
+                                    </Link>
+                                    <li className="nav-item">
+                                    <Link to="/maquinas/lista" className="nav-link">
+                                        <i className="fas fa-scroll nav-icon"></i>
+                                        <p>Listagem</p>
+                                    </Link>
+                                </li>
+                                </li>
+                            </ul>
+                        </li>
 
                     </ul>
                 </nav>
