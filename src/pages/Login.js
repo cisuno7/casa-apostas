@@ -1,6 +1,7 @@
 import {useState} from "react";
 import api from "../service/api";
 import Swal from "sweetalert2";
+import React from "react";
 import {login} from "../service/auth";
 
 export default function Login() {
@@ -28,7 +29,7 @@ export default function Login() {
         <div className="login-page">
             <div className="card card-outline card-primary" style={{width: 400}}>
                 <div className="card-header text-center">
-                    <a href="../../index2.html" className="h1"><b>Server</b>TEC</a>
+                    <a href="../../index.html" className="h1"><b>T.I </b> Company</a>
                 </div>
                 <div className="card-body">
                     <p className="login-box-msg">Faça login para entrar</p>

@@ -1,5 +1,6 @@
 import PageTitle from "../../components/pagetitle";
 import {useEffect, useState} from "react";
+import React from "react";
 import api from "../../service/api";
 
 export default function ListagemFuncionarios(){
@@ -9,6 +10,7 @@ export default function ListagemFuncionarios(){
             setFuncionarios(response.data);
         });
     }, []);
+
     function formataCPF(v){
         v=v.replace(/\D/g,"")                    //Remove tudo o que não é dígito
         v=v.replace(/(\d{3})(\d)/,"$1.$2")       //Coloca um ponto entre o terceiro e o quarto dígitos

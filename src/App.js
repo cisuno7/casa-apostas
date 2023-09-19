@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import CadastroFuncionarios from "./pages/funcionarios/cadastro";
 import {isAuthenticated} from "./service/auth";
 import Login from "./pages/Login";
+import React from "react";
 import {useEffect} from "react";
 import ListagemFuncionarios from "./pages/funcionarios/listagem";
 import AdicionarMaquinas from '../src/pages/Maquinas/Adicionar'
