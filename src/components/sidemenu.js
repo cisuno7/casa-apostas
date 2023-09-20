@@ -138,6 +138,30 @@ export default function SideMenu() {
                                         </li>
                                     </ul>
                                 </li>
+                                <li className="nav-item menu-closed">
+    <a href="#" className="nav-link">
+        <i className="nav-icon fas fa-stopwatch"></i> {/* <- Ícone de relógio */}
+        <p>
+            Relógio
+            <i className="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul className="nav nav-treeview">
+        <li className="nav-item">
+            <Link to="/relogio/adicionar" className="nav-link">
+                <i className="fas fa-plus nav-icon"></i>
+                <p>Adicionar</p>
+            </Link>
+        </li>
+        <li className="nav-item">
+            <Link to="/relogio/listagem" className="nav-link">
+                <i className="fas fa-scroll nav-icon"></i>
+                <p>Listagem</p>
+            </Link>
+        </li>
+    </ul>
+</li>
+                                
                             </>
                         }
                     </ul>

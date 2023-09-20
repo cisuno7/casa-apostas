@@ -12,6 +12,7 @@ import {useEffect} from "react";
 import ListagemFuncionarios from "./pages/funcionarios/listagem";
 import AdicionarMaquinas from '../src/pages/Maquinas/Adicionar'
 import AdicionarPonto from './pages/Pontos/adicionar';
+import AdicionarRelogio from './pages/Relogios/adicionar';
 function App() {
   return (
     <div className="wrapper">
@@ -28,6 +29,7 @@ function App() {
                         <Route path="/funcionarios/lista" element={<ListagemFuncionarios />} />
                         <Route path="/maquinas/novo"element={<AdicionarMaquinas/>}/>
                         <Route path='/ponto/adicionar'element={<AdicionarPonto/>}/>
+                        <Route path='/relogio/adicionar'element={<AdicionarRelogio/>}/>
                     </Routes>
                 </div>
             </>
