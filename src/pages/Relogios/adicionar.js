@@ -1,6 +1,5 @@
 import PageTitle from "../../components/pagetitle";
 import {useEffect, useState} from "react";
-import api from "../../service/api";
 import Swal from "sweetalert2";
 import React from "react";
 import RelogioService from "../../service/relogio";

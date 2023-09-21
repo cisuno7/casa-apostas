@@ -140,7 +140,7 @@ export default function SideMenu() {
                                 </li>
                                 <li className="nav-item menu-closed">
     <a href="#" className="nav-link">
-        <i className="nav-icon fas fa-stopwatch"></i> {/* <- Ícone de relógio */}
+        <i className="nav-icon fas fa-stopwatch"></i> 
         <p>
             Relógio
             <i className="right fas fa-angle-left"></i>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PageTitle from "../../components/pagetitle";
-import api from "../../service/api";
-import Swal from "sweetalert2";
 
+import Swal from "sweetalert2";
+import PontoService from '../../service/ponto';
 export default function AdicionarPonto() {
   const [nomeFantasia, setNomeFantasia] = useState('');
   const [cep, setCep] = useState('');
@@ -10,7 +10,7 @@ export default function AdicionarPonto() {
   const [municipio, setMunicipio] = useState('');
   const [pontoDeReferencia, setPontoDeReferencia] = useState('');
   const [nomeCliente, setNomeCliente] = useState('');
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     
     const pontoData = {
@@ -22,26 +22,29 @@ export default function AdicionarPonto() {
       nomeCliente
     };
     
-    try {
-      const response = await api.post('/ponto/create', pontoData);
-      console.log('Ponto adicionado com sucesso:', response.data);
-  
-    
-      Swal.fire(
-        'Sucesso!',
-        'Ponto adicionado com sucesso!',
-        'success'
-      );
-    } catch (error) {
-      console.error('Houve um erro ao adicionar o ponto:', error);
-      Swal.fire(
-        'Erro!',
-        'Houve um erro ao adicionar o ponto!',
-        'error'
-      );
-    }
-  }
-  
+    PontoService.createPonto(pontoData)
+        .then(response => {
+            if (response.status === 200) {
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Ponto adicionado com sucesso!',
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                }).then(() => {
+                    window.location.href = "/ponto/listagem"; 
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Houve um erro ao adicionar o ponto:', error);
+            Swal.fire(
+                'Erro!',
+                'Houve um erro ao adicionar o ponto!',
+                'error'
+            );
+        });
+}
+
 
   return (
     <>

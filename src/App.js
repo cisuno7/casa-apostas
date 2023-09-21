@@ -8,11 +8,11 @@ import CadastroFuncionarios from "./pages/funcionarios/cadastro";
 import {isAuthenticated} from "./service/auth";
 import Login from "./pages/Login";
 import React from "react";
-import {useEffect} from "react";
 import ListagemFuncionarios from "./pages/funcionarios/listagem";
 import AdicionarMaquinas from '../src/pages/Maquinas/Adicionar'
 import AdicionarPonto from './pages/Pontos/adicionar';
 import AdicionarRelogio from './pages/Relogios/adicionar';
+import ListagemPontos from './pages/Pontos/listagem';
 function App() {
   return (
     <div className="wrapper">
@@ -29,6 +29,7 @@ function App() {
                         <Route path="/funcionarios/lista" element={<ListagemFuncionarios />} />
                         <Route path="/maquinas/novo"element={<AdicionarMaquinas/>}/>
                         <Route path='/ponto/adicionar'element={<AdicionarPonto/>}/>
+                        <Route path='/ponto/listagem'element={<ListagemPontos/>}/>
                         <Route path='/relogio/adicionar'element={<AdicionarRelogio/>}/>
                     </Routes>
                 </div>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080/pontos'; 
+const API_URL = 'http://149.100.154.172:8080/pontos'; 
 
 const getAllPontos = () => {
   return axios.get(`${API_URL}`);
@@ -11,11 +11,11 @@ const getPontoById = (id) => {
 };
 
 const createPonto = (ponto) => {
-  return axios.post(`${API_URL}/ponto/create`, ponto);
+  return axios.post(`${API_URL}/create`, ponto);
 };
 
 const updatePonto = (ponto) => {
-  return axios.put(`${API_URL}/ponto/update`, ponto);
+  return axios.put(`${API_URL}/update`, ponto);
 };
 
 const deletePonto = (id) => {
