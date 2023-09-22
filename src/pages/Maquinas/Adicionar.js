@@ -3,22 +3,38 @@ import {useEffect, useState} from "react";
 import api from "../../service/api";
 import Swal from "sweetalert2";
 import React from "react";
+import {useParams} from "react-router-dom";
 
-export default function CadastroFuncionarios() {
-    const [nome, setNome] = useState('');
-    const [usuario, setUsuario] = useState('');
-    const [cpf, setCpf] = useState('');
-    const [email, setEmail] = useState('');
+export default function CadastroFuncionarios(props) {
+    const [identificador, setIdentificador] = useState('');
+    const [tipoJogo, setTipoJogo] = useState('');
+    const [serial, setSerial] = useState('');
+    const [informacoes, setInformacoes] = useState('');
+    const {id} = useParams();
 
+    useEffect(() => {
+        buscarId(id);
+
+    }, [])
+
+    async function buscarId(id){
+        await api.get('/maquinas/' + id).then(response => {
+            setIdentificador(response.data.identificador);
+            setSerial(response.data.serial);
+            setTipoJogo(response.data.tipoJogo);
+            setInformacoes(response.data.informacoes);
+            console.log(response.data.identificador)
+        });
+    }
     function handleSubmit(e) {
         e.preventDefault();
         const payload = {
-            'nome': nome,
-            'username': usuario,
-            'cpf': cpf,
-            'email': email
+            'identificador': identificador,
+            'tipoJogo': tipoJogo,
+            'serial': serial,
+            'informacoes': informacoes
         };
-        api.post('/funcionario/cadastrar', payload).then(response => {
+        api.post('/maquinas/cadastrar', payload).then(response => {
             if (response.status === 200) {
                 Swal.fire({
                     title: 'Sucesso!',
@@ -27,14 +43,14 @@ export default function CadastroFuncionarios() {
                     confirmButtonText: 'Ok'
                 });
             }
-            window.location.href = "/funcionarios/lista";
         }).catch(error => {
             console.log(error);
         })
     }
+
     return (
         <>
-            <PageTitle title="Maquinas" />
+            <PageTitle title="Maquinas"/>
             <div className="content">
                 <div className="container-fluid">
                     <div className="card card-primary">
@@ -46,27 +62,30 @@ export default function CadastroFuncionarios() {
                             <div className="card-body">
                                 <div className="form-group">
                                     <label htmlFor="nome_funcionario">Serial</label>
-                                    <input type="text" className="form-control" id="nome_funcionario"
-                                           placeholder="Insira o serial da Maquina" onChange={event => setNome(event.target.value)} />
+                                    <input type="text" className="form-control" id="serial" value={serial}
+                                           placeholder="Insira o serial da Maquina"
+                                           onChange={event => setSerial(event.target.value)}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="usuario_funcionario">Tipo de jogo</label>
-                                    <select className="form-control" id="nome_funcionario" onChange={event => setNome(event.target.value)}>
-        <option value="" disabled selected>Selecione um serial</option>
-        <option value="serial1">Serial 1</option>
-        <option value="serial2">Serial 2</option>
-        <option value="serial3">Serial 3</option>
-    </select>
+                                    <select className="form-control" id="tipoDoJogo" value={tipoJogo}
+                                            onChange={event => setTipoJogo(event.target.value)}>
+                                        <option value="" disabled selected>Selecione o tipo do jogo</option>
+                                        <option value="serial1">Jogo 1</option>
+                                        <option value="serial2">Jogo 2</option>
+                                        <option value="serial3">Jogo 3</option>
+                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="cpf">Identificador</label>
-                                    <input type="text" className="form-control" id="cpf"
-                                           onChange={event => setCpf(event.target.value)} />
+                                    <input type="text" className="form-control" id="identificador" value={identificador}
+                                           onChange={event => setIdentificador(event.target.value)}/>
                                 </div>
                                 <div className="form-group">
-    <label htmlFor="email">Informações</label>
-    <textarea className="form-control" id="email" rows="4" onChange={event => setEmail(event.target.value)}></textarea>
-</div>
+                                    <label htmlFor="email">Informações</label>
+                                    <textarea className="form-control" id="informacoes" value={informacoes} rows="4"
+                                              onChange={event => setInformacoes(event.target.value)}></textarea>
+                                </div>
 
                             </div>
 

@@ -3,25 +3,37 @@ import {useEffect, useState} from "react";
 import React from "react";
 import api from "../../service/api";
 
-export default function ListagemFuncionarios(){
+export default function ListagemFuncionarios() {
     const [funcionarios, setFuncionarios] = useState([]);
     useEffect(() => {
-        api.get('/funcionario/listar').then(response => {
-            setFuncionarios(response.data);
-        });
+        buscar();
     }, []);
 
-    function formataCPF(v){
-        v=v.replace(/\D/g,"")                    //Remove tudo o que não é dígito
-        v=v.replace(/(\d{3})(\d)/,"$1.$2")       //Coloca um ponto entre o terceiro e o quarto dígitos
-        v=v.replace(/(\d{3})(\d)/,"$1.$2")       //Coloca um ponto entre o terceiro e o quarto dígitos
-                                                 //de novo (para o segundo bloco de números)
-        v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
+    async function buscar() {
+        await api.get('/funcionario/listar').then(response => {
+            setFuncionarios(response.data);
+        });
+    }
+
+    function formataCPF(v) {
+        v = v.replace(/\D/g, "")                    //Remove tudo o que não é dígito
+        v = v.replace(/(\d{3})(\d)/, "$1.$2")       //Coloca um ponto entre o terceiro e o quarto dígitos
+        v = v.replace(/(\d{3})(\d)/, "$1.$2")       //Coloca um ponto entre o terceiro e o quarto dígitos
+                                                    //de novo (para o segundo bloco de números)
+        v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
         return v
     }
+
+    async function deletar(id) {
+
+        await api.delete('/funcionario/deleta/' + id).then(response => {
+            buscar();
+        })
+    }
+
     return (
         <>
-            <PageTitle title="Funcionários" />
+            <PageTitle title="Funcionários"/>
             <div className="content">
                 <div className="container-fluid">
                     <div className="card card-primary">
@@ -48,7 +60,8 @@ export default function ListagemFuncionarios(){
                                         <td>{formataCPF(funcionario.cpf)}</td>
                                         <td>
                                             <div className="btn-group">
-                                                <button type="button" className="btn btn-primary disabled">Editar</button>
+                                                <button type="button" className="btn btn-primary disabled">Editar
+                                                </button>
                                                 <button type="button" className="btn btn-danger">Excluir</button>
                                             </div>
                                         </td>
