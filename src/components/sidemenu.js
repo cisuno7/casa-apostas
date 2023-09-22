@@ -84,7 +84,7 @@ export default function SideMenu() {
                                             </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="/funcionarios/novo" className="nav-link">
+                                            <Link to="/rotas/lista" className="nav-link">
                                                 <i className="fas fa-scroll nav-icon"></i>
                                                 <p>Listagem</p>
                                             </Link>
@@ -119,7 +119,7 @@ export default function SideMenu() {
                                     <a href="#" className="nav-link">
                                         <i className="nav-icon fas fa-clock"></i>
                                         <p>
-                                            Ponto
+                                            Pontos
                                             <i className="right fas fa-angle-left"></i>
                                         </p>
                                     </a>

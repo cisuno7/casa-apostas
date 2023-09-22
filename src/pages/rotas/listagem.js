@@ -4,9 +4,9 @@ import React from "react";
 import api from "../../service/api";
 import {useNavigate, useParams} from "react-router-dom";
 
-export default function ListagemPontos() {
+export default function ListagemRotas() {
 
-    const [pontos, setPontos] = useState([]);
+    const [rotas, setRotas] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -14,66 +14,56 @@ export default function ListagemPontos() {
     }, []);
 
     async function buscar() {
-        await api.get('/pontos').then(response => {
-            setPontos(response.data);
+        await api.get('/rotas').then(response => {
+            setRotas(response.data);
         });
     }
 
     async function deletar(id) {
 
-        await api.delete('/pontos/deleta/' + id).then(response => {
+        await api.delete('/rotas/deleta/' + id).then(response => {
             buscar();
         })
     }
 
     function editar(id) {
-        navigate("/pontos/editar/" + id);
+        navigate("/rotas/editar/" + id);
     }
-    function formataCEP(v) {
-        v = v.replace(/\D/g, "")                    //Remove tudo o que não é dígito
-        v = v.replace(/(\d{3})(\d{1,3})$/, "$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
-        return v
-    }
+
     return (
         <>
-            <PageTitle title="Pontos"/>
+            <PageTitle title="Rotas"/>
             <div className="content">
                 <div className="container-fluid">
                     <div className="card card-primary">
                         <div className="card-header">
-                            <h3 className="card-title">Lista de pontos</h3>
+                            <h3 className="card-title">Lista de Rotas</h3>
                         </div>
                         <div className={'card-body'}>
                             <table className="table table-sm">
                                 <thead>
                                 <tr>
-                                    <th style={{ width: 10 }}>#</th>
-                                    <th>Nome Cliente</th>
-                                    <th>Nome Fantasia</th>
-                                    <th>Endereço</th>
-                                    <th>Município</th>
+                                    <th style={{width: 10}}>#</th>
+                                    <th>Nome Responsavel</th>
+                                    <th>Cidade</th>
                                     <th>Estado</th>
-                                    <th>CEP</th>
-                                    <th style={{ width: 40 }}>Ações</th>
+                                    <th style={{width: 40}}>Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {pontos.map(pontos => (
-                                    <tr key={pontos.id}>
-                                        <td>{pontos.id}</td>
-                                        <td>{pontos.nomeClinete}</td>
-                                        <td>{pontos.nomeFantasia}</td>
-                                        <td>{pontos.endereco}</td>
-                                        <td>{pontos.municipio}</td>
-                                        <td>{pontos.estado}</td>
-                                        <td>{formataCEP(pontos.cep)}</td>
+                                {rotas.map(rotas => (
+                                    <tr key={rotas.id}>
+                                        <td>{rotas.id}</td>
+                                        <td>{rotas.nomeResponsavel}</td>
+                                        <td>{rotas.cidade}</td>
+                                        <td>{rotas.estado}</td>
                                         <td>
                                             <div className="btn-group">
                                                 <button type="button" className="btn btn-primary"
-                                                        onClick={event => editar(pontos.id)}>Editar
+                                                        onClick={event => editar(rotas.id)}>Editar
                                                 </button>
                                                 <button type="button" className="btn btn-danger"
-                                                        onClick={event => deletar(pontos.id)}>Excluir
+                                                        onClick={event => deletar(rotas.id)}>Excluir
                                                 </button>
                                             </div>
                                         </td>

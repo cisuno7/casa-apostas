@@ -1,26 +1,47 @@
 import PageTitle from "../../components/pagetitle";
 import {useEffect, useState} from "react";
+import api from "../../service/api";
 import Swal from "sweetalert2";
 import React from "react";
-import RelogioService from "../../service/relogio";
-export default function CadastroRelogio() {
+import {useParams} from "react-router-dom";
+
+export default function CadastroRelogio(props) {
     const [relogioMecanicoEntrada, setRelogioMecanicoEntrada] = useState('');
     const [relogioMecanicoSaida, setRelogioMecanicoSaida] = useState('');
     const [relogioEletronicoEntrada, setRelogioEletronicoEntrada] = useState('');
     const [relogioEletronicoSaida, setRelogioEletronicoSaida] = useState('');
-    const [relogioManual, setRelogioManual] = useState('');
+    const [manual, setManual] = useState('');
+    const {id} = useParams();
+
+    useEffect(() => {
+        buscarId(id);
+
+    }, [])
+
+    async function buscarId(id) {
+        await api.get('/pontos/' + id).then(response => {
+            setRelogioMecanicoEntrada(response.data.relogioMecanicoEntrada);
+            setRelogioMecanicoSaida(response.data.relogioMecanicoSaida);
+            setRelogioEletronicoEntrada(response.data.relogioEletronicoEntrada);
+            setRelogioEletronicoSaida(response.data.relogioEletronicoSaida);
+            setManual(response.data.manual);
+            console.log(response.data.identificador)
+        });
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
         const payload = {
+
             'relogioMecanicoEntrada': relogioMecanicoEntrada,
             'relogioMecanicoSaida': relogioMecanicoSaida,
-            'relogioEletronicoEntrada': relogioEletronicoEntrada,
+            'relogioEletronicoEntrada' : relogioEletronicoEntrada,
             'relogioEletronicoSaida': relogioEletronicoSaida,
-            'relogioManual': relogioManual
+            'manual': manual,
+
         };
 
-        RelogioService.createRelogio(payload).then(response => { 
+        api.post('/pontos/cadastrar', payload).then(response => {
             if (response.status === 200) {
                 Swal.fire({
                     title: 'Sucesso!',
@@ -29,7 +50,6 @@ export default function CadastroRelogio() {
                     confirmButtonText: 'Ok'
                 });
             }
-            window.location.href = "/funcionarios/novo";
         }).catch(error => {
             console.log(error);
         })
@@ -49,28 +69,28 @@ export default function CadastroRelogio() {
                             <div className="card-body">
                                 <div className="form-group">
                                     <label htmlFor="relogioMecanicoEntrada">Relógio Mecânico Entrada</label>
-                                    <input type="text" className="form-control" id="relogioMecanicoEntrada"
+                                    <input type="text" className="form-control" id="relogioMecanicoEntrada" value={relogioMecanicoEntrada}
                                            onChange={event => setRelogioMecanicoEntrada(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioMecanicoSaida">Relógio Mecânico Saída</label>
-                                    <input type="text" className="form-control" id="relogioMecanicoSaida"
+                                    <input type="text" className="form-control" id="relogioMecanicoSaida" value={relogioMecanicoSaida}
                                            onChange={event => setRelogioMecanicoSaida(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioEletronicoEntrada">Relógio Eletrônico Entrada</label>
-                                    <input type="text" className="form-control" id="relogioEletronicoEntrada"
+                                    <input type="text" className="form-control" id="relogioEletronicoEntrada" value={relogioEletronicoEntrada}
                                            onChange={event => setRelogioEletronicoEntrada(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioEletronicoSaida">Relógio Eletrônico Saída</label>
-                                    <input type="text" className="form-control" id="relogioEletronicoSaida"
+                                    <input type="text" className="form-control" id="relogioEletronicoSaida" value={relogioEletronicoSaida}
                                            onChange={event => setRelogioEletronicoSaida(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioManual">Relógio Manual</label>
-                                    <input type="text" className="form-control" id="relogioManual"
-                                           onChange={event => setRelogioManual(event.target.value)} />
+                                    <input type="text" className="form-control" id="relogioManual" value={manual}
+                                           onChange={event => setManual(event.target.value)} />
                                 </div>
                             </div>
 

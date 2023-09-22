@@ -13,6 +13,9 @@ import AdicionarPonto from './pages/Pontos/adicionar';
 import AdicionarRelogio from './pages/Relogios/adicionar';
 import ListagemPontos from './pages/Pontos/listagem';
 import ListagemMaquinas from "./pages/Maquinas/listagem";
+import CadastroRotas from "./pages/rotas/adicionar";
+import ListagemRotas from "./pages/rotas/listagem";
+import ListagemRelogio from "./pages/Relogios/listagem";
 
 function App() {
     return (
@@ -25,7 +28,8 @@ function App() {
                         <Routes>
                             <Route path="/" exact element={<Home/>}/>
                             <Route path="/login" element={<Login/>}/>
-                            <Route path="/rotas/novo" element={<h1>Cadastro de rotas</h1>}/>
+                            <Route path="/rotas/novo" element={<CadastroRotas/>}/>
+                            <Route path="/rotas/lista" element={<ListagemRotas/>}/>
                             <Route path="/funcionarios/novo" element={<CadastroFuncionarios/>}/>
                             <Route path="/funcionarios/lista" element={<ListagemFuncionarios/>}/>
                             <Route path="/maquinas/novo" element={<AdicionarMaquinas/>}/>
@@ -34,7 +38,8 @@ function App() {
                             <Route path="/ponto/adicionar" element={<AdicionarPonto/>}/>
                             <Route path="/ponto/listagem" element={<ListagemPontos/>}/>
                             <Route path="/relogio/adicionar" element={<AdicionarRelogio/>}/>
-
+                            <Route path="/relogio/listagem" element={<ListagemRelogio/>}/>
+                            <Route path="/relogio/editar/:id" element={<AdicionarRelogio/>}/>
                         </Routes>
                     </div>
                 </>
