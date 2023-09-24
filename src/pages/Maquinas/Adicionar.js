@@ -32,7 +32,9 @@ export default function CadastroFuncionarios(props) {
             'identificador': identificador,
             'tipoJogo': tipoJogo,
             'serial': serial,
-            'informacoes': informacoes
+            'informacoes': informacoes,
+            'id' : id
+
         };
         api.post('/maquinas/cadastrar', payload).then(response => {
             if (response.status === 200) {
@@ -62,13 +64,13 @@ export default function CadastroFuncionarios(props) {
                             <div className="card-body">
                                 <div className="form-group">
                                     <label htmlFor="nome_funcionario">Serial</label>
-                                    <input type="text" className="form-control" id="serial" value={serial}
+                                    <input type="text" className="form-control" id="serial" value={serial} required="required"
                                            placeholder="Insira o serial da Maquina"
                                            onChange={event => setSerial(event.target.value)}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="usuario_funcionario">Tipo de jogo</label>
-                                    <select className="form-control" id="tipoDoJogo" value={tipoJogo}
+                                    <select className="form-control" id="tipoDoJogo" value={tipoJogo} required="required"
                                             onChange={event => setTipoJogo(event.target.value)}>
                                         <option value="" disabled selected>Selecione o tipo do jogo</option>
                                         <option value="serial1">Jogo 1</option>
@@ -78,12 +80,12 @@ export default function CadastroFuncionarios(props) {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="cpf">Identificador</label>
-                                    <input type="text" className="form-control" id="identificador" value={identificador}
+                                    <input type="text" className="form-control" id="identificador" value={identificador} required="required"
                                            onChange={event => setIdentificador(event.target.value)}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="email">Informações</label>
-                                    <textarea className="form-control" id="informacoes" value={informacoes} rows="4"
+                                    <textarea className="form-control" id="informacoes" value={informacoes} rows="4" required="required"
                                               onChange={event => setInformacoes(event.target.value)}></textarea>
                                 </div>
 

@@ -38,6 +38,7 @@ export default function CadastroRelogio(props) {
             'relogioEletronicoEntrada' : relogioEletronicoEntrada,
             'relogioEletronicoSaida': relogioEletronicoSaida,
             'manual': manual,
+            'id' : id
 
         };
 
@@ -69,27 +70,27 @@ export default function CadastroRelogio(props) {
                             <div className="card-body">
                                 <div className="form-group">
                                     <label htmlFor="relogioMecanicoEntrada">Relógio Mecânico Entrada</label>
-                                    <input type="text" className="form-control" id="relogioMecanicoEntrada" value={relogioMecanicoEntrada}
+                                    <input type="text" className="form-control" id="relogioMecanicoEntrada" value={relogioMecanicoEntrada} required="required"
                                            onChange={event => setRelogioMecanicoEntrada(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioMecanicoSaida">Relógio Mecânico Saída</label>
-                                    <input type="text" className="form-control" id="relogioMecanicoSaida" value={relogioMecanicoSaida}
+                                    <input type="text" className="form-control" id="relogioMecanicoSaida" value={relogioMecanicoSaida} required="required"
                                            onChange={event => setRelogioMecanicoSaida(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioEletronicoEntrada">Relógio Eletrônico Entrada</label>
-                                    <input type="text" className="form-control" id="relogioEletronicoEntrada" value={relogioEletronicoEntrada}
+                                    <input type="text" className="form-control" id="relogioEletronicoEntrada" value={relogioEletronicoEntrada} required="required"
                                            onChange={event => setRelogioEletronicoEntrada(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioEletronicoSaida">Relógio Eletrônico Saída</label>
-                                    <input type="text" className="form-control" id="relogioEletronicoSaida" value={relogioEletronicoSaida}
+                                    <input type="text" className="form-control" id="relogioEletronicoSaida" value={relogioEletronicoSaida} required="required"
                                            onChange={event => setRelogioEletronicoSaida(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioManual">Relógio Manual</label>
-                                    <input type="text" className="form-control" id="relogioManual" value={manual}
+                                    <input type="text" className="form-control" id="relogioManual" value={manual} required="required"
                                            onChange={event => setManual(event.target.value)} />
                                 </div>
                             </div>

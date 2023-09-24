@@ -30,13 +30,16 @@ function App() {
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/rotas/novo" element={<CadastroRotas/>}/>
                             <Route path="/rotas/lista" element={<ListagemRotas/>}/>
+                            <Route path="/rotas/editar/:id" element={<AdicionarMaquinas/>}/>
                             <Route path="/funcionarios/novo" element={<CadastroFuncionarios/>}/>
                             <Route path="/funcionarios/lista" element={<ListagemFuncionarios/>}/>
+                            <Route path="/funcionarios/editar/:id" element={<AdicionarMaquinas/>}/>
                             <Route path="/maquinas/novo" element={<AdicionarMaquinas/>}/>
                             <Route path="/maquinas/lista" element={<ListagemMaquinas/>}/>
                             <Route path="/maquinas/editar/:id" element={<AdicionarMaquinas/>}/>
                             <Route path="/ponto/adicionar" element={<AdicionarPonto/>}/>
                             <Route path="/ponto/listagem" element={<ListagemPontos/>}/>
+                            <Route path="/ponto/editar/:id" element={<AdicionarMaquinas/>}/>
                             <Route path="/relogio/adicionar" element={<AdicionarRelogio/>}/>
                             <Route path="/relogio/listagem" element={<ListagemRelogio/>}/>
                             <Route path="/relogio/editar/:id" element={<AdicionarRelogio/>}/>

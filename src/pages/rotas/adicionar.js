@@ -19,7 +19,7 @@ export default function CadastroRotas(props) {
     async function buscarId(id) {
         await api.get('/rotas/' + id).then(response => {
             setNomeResponsavel(response.data.nomeFantasia);
-            setCidade(response.data.nomeCliente);
+            setCidade(response.data.nomeClinete);
             setEstado(response.data.endereco);
             console.log(response.data.identificador)
         });
@@ -32,6 +32,7 @@ export default function CadastroRotas(props) {
             'nomeResponsavel': nomeResponsavel,
             'cidade': cidade,
             'estado': estado,
+            'id' : id
         };
 
         api.post('/pontos/cadastrar', payload).then(response => {

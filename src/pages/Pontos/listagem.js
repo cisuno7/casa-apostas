@@ -29,11 +29,13 @@ export default function ListagemPontos() {
     function editar(id) {
         navigate("/pontos/editar/" + id);
     }
+
     function formataCEP(v) {
         v = v.replace(/\D/g, "")                    //Remove tudo o que não é dígito
         v = v.replace(/(\d{3})(\d{1,3})$/, "$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
-        return v
+        return v;
     }
+
     return (
         <>
             <PageTitle title="Pontos"/>
@@ -47,14 +49,14 @@ export default function ListagemPontos() {
                             <table className="table table-sm">
                                 <thead>
                                 <tr>
-                                    <th style={{ width: 10 }}>#</th>
+                                    <th style={{width: 10}}>#</th>
                                     <th>Nome Cliente</th>
                                     <th>Nome Fantasia</th>
                                     <th>Endereço</th>
                                     <th>Município</th>
                                     <th>Estado</th>
                                     <th>CEP</th>
-                                    <th style={{ width: 40 }}>Ações</th>
+                                    <th style={{width: 40}}>Ações</th>
                                 </tr>
                                 </thead>
                                 <tbody>

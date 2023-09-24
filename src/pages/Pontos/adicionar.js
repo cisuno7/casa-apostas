@@ -88,6 +88,7 @@ export default function CadastroPontos(props) {
                         className="form-control"
                         id="nome_fantasia"
                         placeholder="Insira o nome fantasia"
+                        required="required"
                         onChange={e => setNomeFantasia(e.target.value)}
                     />
                   </div>
@@ -98,6 +99,7 @@ export default function CadastroPontos(props) {
                         className="form-control"
                         id="endereco"
                         placeholder="Insira o endereço"
+                        required="required"
                         onChange={e => setEndereco(e.target.value)}
                     />
                   </div>
@@ -108,12 +110,13 @@ export default function CadastroPontos(props) {
                         className="form-control"
                         id="municipio"
                         placeholder="Insira o município"
+                        required="required"
                         onChange={e => setMunicipio(e.target.value)}
                     />
                   </div>
                   <div className="form-group">
                     <label htmlFor="usuario_funcionario">Estado</label>
-                    <select className="form-control" id="estado" value={estado}
+                    <select className="form-control" id="estado" value={estado} required="required"
                             onChange={event => setEstado(event.target.value)}>
                       <option value="" disabled selected>Selecione o Estado</option>
                       <option value="Acre">Acre</option>
@@ -151,6 +154,7 @@ export default function CadastroPontos(props) {
                         className="form-control"
                         id="cep"
                         placeholder="Insira o CEP"
+                        required="required"
                         onChange={e => setCep(e.target.value)}
                     />
                   </div>
@@ -161,6 +165,7 @@ export default function CadastroPontos(props) {
                         className="form-control"
                         id="ponto_de_referencia"
                         placeholder="Insira o ponto de referência"
+                        required="required"
                         onChange={e => setPontoDeReferencia(e.target.value)}
                     />
                   </div>

@@ -2,9 +2,12 @@ import PageTitle from "../../components/pagetitle";
 import {useEffect, useState} from "react";
 import React from "react";
 import api from "../../service/api";
+import {useNavigate} from "react-router-dom";
 
 export default function ListagemFuncionarios() {
     const [funcionarios, setFuncionarios] = useState([]);
+    const navigate = useNavigate();
+
     useEffect(() => {
         buscar();
     }, []);
@@ -26,9 +29,12 @@ export default function ListagemFuncionarios() {
 
     async function deletar(id) {
 
-        await api.delete('/funcionario/deleta/' + id).then(response => {
+        await api.delete('/funcionario/deletar/' + id).then(response => {
             buscar();
         })
+    }
+    function editar(id) {
+        navigate("/funcionario/editar/" + id);
     }
 
     return (
@@ -60,9 +66,9 @@ export default function ListagemFuncionarios() {
                                         <td>{formataCPF(funcionario.cpf)}</td>
                                         <td>
                                             <div className="btn-group">
-                                                <button type="button" className="btn btn-primary disabled">Editar
+                                                <button type="button" className="btn btn-primary disabled" onClick={event => editar(funcionario.id)}>Editar
                                                 </button>
-                                                <button type="button" className="btn btn-danger">Excluir</button>
+                                                <button type="button" className="btn btn-danger" onClick={event => deletar(funcionario.id)}>Excluir</button>
                                             </div>
                                         </td>
 

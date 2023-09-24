@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import api from "../../service/api";
 import Swal from "sweetalert2";
 import React from "react";
+import {useParams} from "react-router-dom";
 
 export default function CadastroFuncionarios() {
     const [cargos, setCargos] = useState([]);
@@ -12,12 +13,25 @@ export default function CadastroFuncionarios() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [cargo, setCargo] = useState('');
+    const {id} = useParams();
     useEffect(() => {
         api.get('/funcionario/cargos').then(response => {
             setCargos(response.data);
             setCargo(response.data[0]);
         });
     }, []);
+    async function buscarId(id){
+        await api.get('/funcionario/' + id).then(response => {
+            setCargos(response.data.cargos);
+            setNome(response.data.nome);
+            setUsuario(response.data.usuario);
+            setCpf(response.data.cpf);
+            setEmail(response.data.email);
+            setSenha(response.data.senha);
+            setCargo(response.data.cargo);
+            console.log(response.data.identificador)
+        });
+    }
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -27,7 +41,8 @@ export default function CadastroFuncionarios() {
             'cpf': cpf,
             'email': email,
             'senha': senha,
-            'funcao': cargo
+            'funcao': cargo,
+            'id' : id
         };
         api.post('/funcionario/cadastrar', payload).then(response => {
             if (response.status === 200) {
@@ -57,27 +72,27 @@ export default function CadastroFuncionarios() {
                             <div className="card-body">
                                 <div className="form-group">
                                     <label htmlFor="nome_funcionario">Nome do funcionário</label>
-                                    <input type="text" className="form-control" id="nome_funcionario"
+                                    <input type="text" className="form-control" id="nome_funcionario" value={nome} required="required"
                                            placeholder="Insira o nome do funcionário" onChange={event => setNome(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="usuario_funcionario">Usuário</label>
-                                    <input type="text" className="form-control" id="usuario_funcionario"
+                                    <input type="text" className="form-control" id="usuario_funcionario" value={usuario} required="required"
                                            placeholder="Insira um nome de usuário" onChange={event => setUsuario(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="cpf">CPF</label>
-                                    <input type="text" className="form-control" id="cpf"
+                                    <input type="text" className="form-control" id="cpf" value={cpf} required="required"
                                            placeholder="Insira o CPF do funcionário" onChange={event => setCpf(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="email">Endereço de email</label>
-                                    <input type="email" className="form-control" id="email"
+                                    <input type="email" className="form-control" id="email" value={email} required="required"
                                            placeholder="Insira um email" onChange={event => setEmail(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="senha">Senha</label>
-                                    <input type="password" className="form-control" id="senha"
+                                    <input type="password" className="form-control" id="senha" value={senha} required="required"
                                            placeholder="Insira a senha" onChange={event => setSenha(event.target.value)} />
                                 </div>
                                 <div className="form-group">
