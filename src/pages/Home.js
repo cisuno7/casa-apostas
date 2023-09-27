@@ -1,7 +1,12 @@
-import PageTitle from "../components/pagetitle";
 import React from "react";
+import PageTitle from "../components/pagetitle";
+import PontoList from "./Leitura/leitura"
+
 export default function Home() {
     return (
-        <PageTitle title="Início" />
-    )
+        <>
+            <PageTitle title="Início" />
+            <PontoList />
+        </>
+    );
 }

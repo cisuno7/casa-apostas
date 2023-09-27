@@ -16,6 +16,7 @@ import ListagemMaquinas from "./pages/Maquinas/listagem";
 import CadastroRotas from "./pages/rotas/adicionar";
 import ListagemRotas from "./pages/rotas/listagem";
 import ListagemRelogio from "./pages/Relogios/listagem";
+import Leitura from './pages/Leitura/leitura';
 
 function App() {
     return (
@@ -39,10 +40,11 @@ function App() {
                             <Route path="/maquinas/editar/:id" element={<AdicionarMaquinas/>}/>
                             <Route path="/ponto/adicionar" element={<AdicionarPonto/>}/>
                             <Route path="/ponto/listagem" element={<ListagemPontos/>}/>
-                            <Route path="/ponto/editar/:id" element={<AdicionarMaquinas/>}/>
+                            <Route path="/ponto/editar/:id" element={<AdicionarPonto/>}/>
                             <Route path="/relogio/adicionar" element={<AdicionarRelogio/>}/>
                             <Route path="/relogio/listagem" element={<ListagemRelogio/>}/>
                             <Route path="/relogio/editar/:id" element={<AdicionarRelogio/>}/>
+                            <Route path="leitura" element={<Leitura/>}/>
                         </Routes>
                     </div>
                 </>

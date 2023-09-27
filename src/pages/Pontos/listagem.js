@@ -31,10 +31,13 @@ export default function ListagemPontos() {
     }
 
     function formataCEP(v) {
-        v = v.replace(/\D/g, "")                    //Remove tudo o que não é dígito
-        v = v.replace(/(\d{3})(\d{1,3})$/, "$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
+        if (v) {
+            v = v.replace(/\D/g, "");                    
+            v = v.replace(/(\d{3})(\d{1,3})$/, "$1-$2");
+        }
         return v;
     }
+    
 
     return (
         <>
