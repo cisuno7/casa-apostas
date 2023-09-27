@@ -160,6 +160,16 @@ export default function SideMenu() {
             </Link>
         </li>
     </ul>
+    <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+           
+            <li className="nav-item">
+                <Link to="/leitura" className="nav-link" onClick={atualizaMenu}>
+                    <i className="nav-icon fas fa-book"></i> 
+                    <p>Leitura</p>
+                </Link>
+            </li>
+            
+        </ul>
 </li>
                                 
                             </>
