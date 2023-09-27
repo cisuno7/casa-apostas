@@ -41,3 +41,113 @@
     height: 20px;
     margin-right: 0.5rem;
 }
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 30px;
+    width: 60%; /* Ajuste a largura conforme necessário */
+    min-width: 300px; /* Defina um valor mínimo para a largura */
+    max-width: 800px; /* Defina um valor máximo para a largura */
+    border: 9px solid #001F3F;
+    overflow-y: auto;
+    max-height: 90vh;
+    min-height: 300px; /* Defina um valor mínimo para a altura */
+}
+
+  
+   
+  
+  .ponto-item {
+    cursor: pointer; /* Estilo de ponteiro do mouse para indicar que os itens podem ser clicados */
+    /* ... outras regras ... */
+  }
+  
+.show {
+    display: flex;
+}
+.modal-title {
+    font-size: 2em; /* Ajuste conforme necessário */
+    color: black;
+    margin-bottom: 10px; /* Ajuste conforme necessário */
+}
+
+.modal-subtitle {
+    font-size: 1.5em; /* Ajuste conforme necessário */
+    margin-bottom: 20px; /* Ajuste conforme necessário */
+}
+
+.ponto-info p {
+    margin: 5px 0; /* Ajuste conforme necessário */
+}
+.modal-scroll-container {
+    max-height: 70vh; /* Ajuste conforme necessário */
+    overflow-y: auto; /* Adiciona rolagem vertical */
+    padding: 1rem; /* Ajuste o padding se necessário */
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20%; /* Ajuste o padding para mover as abas para o centro */
+}
+
+.tab-header {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    background: none;
+    font-size: 1.2em;
+}
+
+.tab-header.active {
+    font-weight: bold;
+}
+
+.tab-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pc-content {
+    margin-top: 30px; /* Isso empurra o conteúdo para baixo */
+}
+
+
+/* Para a tab MAQS */
+.maqs-content {
+    /* Estilos para a aba MAQS */
+}
+.tab-header.active {
+    font-weight: bold;
+}
+.checkbox-container {
+    margin-bottom: 1rem;
+}
+
+.checkboxes label {
+    margin-right: 1rem;
+}
+.checkboxes label {
+    font-size: 0.8rem; /* Ajuste o tamanho da fonte conforme necessário */
+    margin-right: 1.5rem; /* Ajusta o espaço entre os labels */
+    display: flex;
+    align-items: center;
+}
+
+.checkboxes label input {
+    margin-right: 0.5rem; /* Ajuste o espaço entre o checkbox e o texto do label */
+}
