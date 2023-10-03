@@ -170,6 +170,15 @@ export default function SideMenu() {
             </li>
             
         </ul>
+        {permissao === "ROLE_ADMIN" && ( 
+            <li className="nav-item">
+            <Link to="/vinculacao" className="nav-link" onClick={atualizaMenu}>
+                <i className="nav-icon fas fa-link"></i> 
+                <p>Vinculação</p>
+            </Link>
+        </li>
+        )}
+            
 </li>
                                 
                             </>
