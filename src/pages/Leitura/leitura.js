@@ -10,6 +10,7 @@ function PontoList() {
     const [activeTab, setActiveTab] = useState('pc');
 
 console.log(selectedPonto);
+
     useEffect(() => {
         async function fetchPontos() {
             try {
@@ -22,16 +23,22 @@ console.log(selectedPonto);
         }
         fetchPontos();
     }, []);
-
-    const openModal = (ponto) => {
-        console.log(ponto)
+    useEffect(() => {
+        console.log(showModal); 
+    }, [showModal]);
+    
+    const openModal = (ponto, event) => {
+        event.stopPropagation();
         setSelectedPonto(ponto);
         setShowModal(true);
     }
 
     const closeModal = () => {
+        console.log('Close modal called');
         setShowModal(false);
+        console.log(showModal);  
     }
+    
 
     if (!pontos.length) {
         return <p>Nenhum ponto disponível.</p>;
@@ -39,11 +46,13 @@ console.log(selectedPonto);
 
     return (
         <div>
-            <div className={`modal ${showModal ? 'show' : ''}`} onClick={closeModal}>
+          <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'flex' : 'none' }} onClick={closeModal}>
             <div className="modal-content" onClick={e => e.stopPropagation()}>
+                
     <div className="modal-scroll-container">
     {selectedPonto && (
     <>
+     <button className="close-button" onClick={closeModal}>X</button> 
         <h1 className="modal-title">ABRIR PC LEITURA</h1>
 
         {/* Tabs Headers */}
@@ -79,12 +88,23 @@ console.log(selectedPonto);
                     </label>
                 </div>
          </div>
+         <div className="select-container">
+            <label>
+                <p style={{ fontSize: 'small', color: 'black' }}>Retorno</p>
+                <select name="retorno" id="retorno">
+                    <option value="valor1">Valor 1</option>
+                    <option value="valor2">Valor 2</option>
+                    <option value="valor3">Valor 3</option>
+                </select>
+            </label>
+        </div>
             <div className="ponto-info">
                 {selectedPonto && (
                     <>
+                    
                         <p><strong>Nome Fantasia:</strong> {selectedPonto.nomeFantasia}</p>
                         <p><strong>Nome Cliente:</strong> {selectedPonto.nomeClinete}</p>
-                        {/* ... outras informações do ponto ... */}
+                       
                     </>
                 )}
             </div>
@@ -101,7 +121,7 @@ console.log(selectedPonto);
 
             <div className="ponto-list">
                 {pontos.map(ponto => (
-                    <div key={ponto.id} className="ponto-item" onClick={() => openModal(ponto)}>
+                   <div key={ponto.id} className="ponto-item" onClick={(event) => openModal(ponto, event)}>
                         <div className="ponto-title">
                             {ponto.nomeFantasia} ({ponto.nomeClinete})
                         </div>
