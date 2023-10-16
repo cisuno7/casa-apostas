@@ -31,13 +31,10 @@ export default function ListagemPontos() {
     }
 
     function formataCEP(v) {
-        if (v) {
-            v = v.replace(/\D/g, "");                    
-            v = v.replace(/(\d{3})(\d{1,3})$/, "$1-$2");
-        }
+        v = v.replace(/\D/g, "")                    //Remove tudo o que não é dígito
+        v = v.replace(/(\d{3})(\d{1,3})$/, "$1-$2") //Coloca um hífen entre o terceiro e o quarto dígitos
         return v;
     }
-    
 
     return (
         <>
@@ -66,7 +63,7 @@ export default function ListagemPontos() {
                                 {pontos.map(pontos => (
                                     <tr key={pontos.id}>
                                         <td>{pontos.id}</td>
-                                        <td>{pontos.nomeClinete}</td>
+                                        <td>{pontos.nomeCliente}</td>
                                         <td>{pontos.nomeFantasia}</td>
                                         <td>{pontos.endereco}</td>
                                         <td>{pontos.municipio}</td>

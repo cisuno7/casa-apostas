@@ -9,23 +9,25 @@ export default function CadastroFuncionarios() {
     const [cargos, setCargos] = useState([]);
     const [nome, setNome] = useState('');
     const [usuario, setUsuario] = useState('');
-    const [cpf, setCpf] = useState('');
+    const [telefone, setTelefone] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [cargo, setCargo] = useState('');
     const {id} = useParams();
     useEffect(() => {
         api.get('/funcionario/cargos').then(response => {
+            buscarId(id);
             setCargos(response.data);
             setCargo(response.data[0]);
         });
     }, []);
-    async function buscarId(id){
+
+    async function buscarId(id) {
         await api.get('/funcionario/' + id).then(response => {
             setCargos(response.data.cargos);
             setNome(response.data.nome);
             setUsuario(response.data.usuario);
-            setCpf(response.data.cpf);
+            setTelefone(response.data.telefone);
             setEmail(response.data.email);
             setSenha(response.data.senha);
             setCargo(response.data.cargo);
@@ -38,11 +40,11 @@ export default function CadastroFuncionarios() {
         const payload = {
             'nome': nome,
             'username': usuario,
-            'cpf': cpf,
+            'telefone': telefone,
             'email': email,
             'senha': senha,
             'funcao': cargo,
-            'id' : id
+            'id': id
         };
         api.post('/funcionario/cadastrar', payload).then(response => {
             if (response.status === 200) {
@@ -58,9 +60,10 @@ export default function CadastroFuncionarios() {
             console.log(error);
         })
     }
+
     return (
         <>
-            <PageTitle title="Funcionários" />
+            <PageTitle title="Funcionários"/>
             <div className="content">
                 <div className="container-fluid">
                     <div className="card card-primary">
@@ -72,32 +75,45 @@ export default function CadastroFuncionarios() {
                             <div className="card-body">
                                 <div className="form-group">
                                     <label htmlFor="nome_funcionario">Nome do funcionário</label>
-                                    <input type="text" className="form-control" id="nome_funcionario" value={nome} required="required"
-                                           placeholder="Insira o nome do funcionário" onChange={event => setNome(event.target.value)} />
+                                    <input type="text" className="form-control" id="nome_funcionario"
+                                           required="required"
+                                           placeholder="Insira o nome do funcionário"
+                                           value={nome}
+                                           onChange={event => setNome(event.target.value)}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="usuario_funcionario">Usuário</label>
-                                    <input type="text" className="form-control" id="usuario_funcionario" value={usuario} required="required"
-                                           placeholder="Insira um nome de usuário" onChange={event => setUsuario(event.target.value)} />
+                                    <input type="text" className="form-control" id="usuario_funcionario"
+                                           required="required"
+                                           placeholder="Insira um nome de usuário"
+                                           value={usuario}
+                                           onChange={event => setUsuario(event.target.value)}/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="cpf">CPF</label>
-                                    <input type="text" className="form-control" id="cpf" value={cpf} required="required"
-                                           placeholder="Insira o CPF do funcionário" onChange={event => setCpf(event.target.value)} />
+                                    <label htmlFor="cpf">Telefone</label>
+                                    <input type="text" className="form-control" id="telefone"  required="required"
+                                           placeholder="Insira o Telefone do funcionário"
+                                           onChange={event => setTelefone(event.target.value)}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="email">Endereço de email</label>
-                                    <input type="email" className="form-control" id="email" value={email} required="required"
-                                           placeholder="Insira um email" onChange={event => setEmail(event.target.value)} />
+                                    <input type="email" className="form-control" id="email"
+                                           required="required"
+                                           placeholder="Insira um email"
+                                           value={email}
+                                           onChange={event => setEmail(event.target.value)}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="senha">Senha</label>
-                                    <input type="password" className="form-control" id="senha" value={senha} required="required"
-                                           placeholder="Insira a senha" onChange={event => setSenha(event.target.value)} />
+                                    <input type="password" className="form-control" id="senha"
+                                           required="required"
+                                           placeholder="Insira a senha"
+                                           value={senha}
+                                           onChange={event => setSenha(event.target.value)}/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="cargo">Cargo</label>
-                                    <select className={'form-control'} onChange={event => setCargo(event.target.value)} >
+                                    <select className={'form-control'} value={cargo} onChange={event => setCargo(event.target.value)}>
                                         {cargos.map(cargo => (
                                             <option value={cargo}>{cargo}</option>
                                         ))}

@@ -5,16 +5,18 @@ import Swal from "sweetalert2";
 import React from "react";
 import {useParams} from "react-router-dom";
 
-export default function CadastroFuncionarios(props) {
+export default function CadastroMaquinas(props) {
+    const [pontos, setPontos] = useState([]);
     const [identificador, setIdentificador] = useState('');
     const [tipoJogo, setTipoJogo] = useState('');
     const [serial, setSerial] = useState('');
     const [informacoes, setInformacoes] = useState('');
+    const [ponto, setPonto] = useState({});
     const {id} = useParams();
 
     useEffect(() => {
         buscarId(id);
-
+        buscarPontos();
     }, [])
 
     async function buscarId(id){
@@ -26,9 +28,16 @@ export default function CadastroFuncionarios(props) {
             console.log(response.data.identificador)
         });
     }
+    function buscarPontos(){
+        api.get('/pontos').then(result => {
+            setPontos(result.data)
+        })
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
         const payload = {
+            'ponto': ponto,
             'identificador': identificador,
             'tipoJogo': tipoJogo,
             'serial': serial,
@@ -49,6 +58,14 @@ export default function CadastroFuncionarios(props) {
             console.log(error);
         })
     }
+    function vinculaPonto(idSelecionado){
+        const selecionado = pontos.find(p => {
+            if (p.id === parseInt(idSelecionado)){
+                return p;
+            }
+        });
+        setPonto(selecionado);
+    }
 
     return (
         <>
@@ -63,6 +80,17 @@ export default function CadastroFuncionarios(props) {
                         <form onSubmit={handleSubmit}>
                             <div className="card-body">
                                 <div className="form-group">
+                                    <label htmlFor="ponto">Qual o ponto onde encontra-se esta máquina?</label>
+                                    <select className={'form-control'} onChange={(e) => vinculaPonto(e.target.value)}>
+                                        <option value="" disabled selected>Selecione um ponto</option>
+                                        {
+                                            pontos.map(ponto => {
+                                                return <option id={ponto.id} value={ponto.id}>ID: {ponto.id} - [{ponto.nomeCliente}] - {ponto.municipio}</option>
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <div className="form-group">
                                     <label htmlFor="nome_funcionario">Serial</label>
                                     <input type="text" className="form-control" id="serial" value={serial} required="required"
                                            placeholder="Insira o serial da Maquina"
@@ -73,9 +101,12 @@ export default function CadastroFuncionarios(props) {
                                     <select className="form-control" id="tipoDoJogo" value={tipoJogo} required="required"
                                             onChange={event => setTipoJogo(event.target.value)}>
                                         <option value="" disabled selected>Selecione o tipo do jogo</option>
-                                        <option value="serial1">Jogo 1</option>
-                                        <option value="serial2">Jogo 2</option>
-                                        <option value="serial3">Jogo 3</option>
+                                        <option value="serial1">Metro</option>
+                                        <option value="serial2">Champion</option>
+                                        <option value="serial3">Simpson</option>
+                                        <option value="serial4">Hallowen</option>
+                                        <option value="serial5">Campeonato Brasileiro</option>
+                                        <option value="serial6">Copa</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
@@ -88,7 +119,6 @@ export default function CadastroFuncionarios(props) {
                                     <textarea className="form-control" id="informacoes" value={informacoes} rows="4" required="required"
                                               onChange={event => setInformacoes(event.target.value)}></textarea>
                                 </div>
-
                             </div>
 
                             <div className="card-footer">

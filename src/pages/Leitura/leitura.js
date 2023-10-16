@@ -6,7 +6,7 @@ function PontoList() {
     const [pontos, setPontos] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedPonto, setSelectedPonto] = useState({});
-
+    const [leitura, setLeitura] = useState({});
     const [activeTab, setActiveTab] = useState('pc');
 
 console.log(selectedPonto);

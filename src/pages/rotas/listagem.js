@@ -54,7 +54,7 @@ export default function ListagemRotas() {
                                 {rotas.map(rotas => (
                                     <tr key={rotas.id}>
                                         <td>{rotas.id}</td>
-                                        <td>{rotas.nomeResponsavel}</td>
+                                        <td>{rotas.responsavel.nome}</td>
                                         <td>{rotas.cidade}</td>
                                         <td>{rotas.estado}</td>
                                         <td>

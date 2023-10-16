@@ -67,10 +67,6 @@ export default function Login() {
                         </div>
                     </form>
 
-                    <p className="mb-1">
-                        <a href="forgot-password.html">Esqueci minha senha</a>
-                    </p>
-
                 </div>
             </div>
         </div>
