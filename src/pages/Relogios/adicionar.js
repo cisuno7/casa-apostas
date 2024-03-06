@@ -1,21 +1,19 @@
 import PageTitle from "../../components/pagetitle";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import api from "../../service/api";
 import Swal from "sweetalert2";
 import React from "react";
-import {useParams} from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 export default function CadastroRelogio(props) {
     const [relogioMecanicoEntrada, setRelogioMecanicoEntrada] = useState('');
     const [relogioMecanicoSaida, setRelogioMecanicoSaida] = useState('');
     const [relogioEletronicoEntrada, setRelogioEletronicoEntrada] = useState('');
     const [relogioEletronicoSaida, setRelogioEletronicoSaida] = useState('');
     const [manual, setManual] = useState('');
-    const {id} = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
         buscarId(id);
-
     }, [])
 
     async function buscarId(id) {
@@ -32,14 +30,12 @@ export default function CadastroRelogio(props) {
     function handleSubmit(e) {
         e.preventDefault();
         const payload = {
-
             'relogioMecanicoEntrada': relogioMecanicoEntrada,
             'relogioMecanicoSaida': relogioMecanicoSaida,
-            'relogioEletronicoEntrada' : relogioEletronicoEntrada,
+            'relogioEletronicoEntrada': relogioEletronicoEntrada,
             'relogioEletronicoSaida': relogioEletronicoSaida,
             'manual': manual,
-            'id' : id
-
+            'id': id
         };
 
         api.post('/pontos/cadastrar', payload).then(response => {
@@ -53,11 +49,12 @@ export default function CadastroRelogio(props) {
             }
         }).catch(error => {
             console.log(error);
-        })
+        });
     }
 
     return (
         <>
+            
             <PageTitle title="Relógios" />
             <div className="content">
                 <div className="container-fluid">
@@ -71,27 +68,27 @@ export default function CadastroRelogio(props) {
                                 <div className="form-group">
                                     <label htmlFor="relogioMecanicoEntrada">Relógio Mecânico Entrada</label>
                                     <input type="text" className="form-control" id="relogioMecanicoEntrada" value={relogioMecanicoEntrada} required="required"
-                                           onChange={event => setRelogioMecanicoEntrada(event.target.value)} />
+                                        onChange={event => setRelogioMecanicoEntrada(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioMecanicoSaida">Relógio Mecânico Saída</label>
                                     <input type="text" className="form-control" id="relogioMecanicoSaida" value={relogioMecanicoSaida} required="required"
-                                           onChange={event => setRelogioMecanicoSaida(event.target.value)} />
+                                        onChange={event => setRelogioMecanicoSaida(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioEletronicoEntrada">Relógio Eletrônico Entrada</label>
                                     <input type="text" className="form-control" id="relogioEletronicoEntrada" value={relogioEletronicoEntrada} required="required"
-                                           onChange={event => setRelogioEletronicoEntrada(event.target.value)} />
+                                        onChange={event => setRelogioEletronicoEntrada(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioEletronicoSaida">Relógio Eletrônico Saída</label>
                                     <input type="text" className="form-control" id="relogioEletronicoSaida" value={relogioEletronicoSaida} required="required"
-                                           onChange={event => setRelogioEletronicoSaida(event.target.value)} />
+                                        onChange={event => setRelogioEletronicoSaida(event.target.value)} />
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="relogioManual">Relógio Manual</label>
                                     <input type="text" className="form-control" id="relogioManual" value={manual} required="required"
-                                           onChange={event => setManual(event.target.value)} />
+                                        onChange={event => setManual(event.target.value)} />
                                 </div>
                             </div>
 

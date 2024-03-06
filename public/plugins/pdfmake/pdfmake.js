@@ -6556,7 +6556,7 @@ __webpack_require__(561);
        *         mode: CryptoJS.mode.CBC,
        *         padding: CryptoJS.pad.PKCS7,
        *         blockSize: 4,
-       *         formatter: CryptoJS.format.OpenSSL
+       *         formatter: CryptoJS.format.
        *     });
        */
       init: function init(cipherParams) {

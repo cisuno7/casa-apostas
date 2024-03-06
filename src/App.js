@@ -8,18 +8,17 @@ import {isAuthenticated} from "./service/auth";
 import Login from "./pages/Login";
 import React from "react";
 import ListagemFuncionarios from "./pages/funcionarios/listagem";
-import AdicionarMaquinas from './pages/maquinas/Adicionar'
-import AdicionarPonto from './pages/pontos/adicionar';
-import AdicionarRelogio from './pages/relogios/adicionar';
-import ListagemPontos from './pages/pontos/listagem';
-import ListagemMaquinas from "./pages/maquinas/listagem";
+import AdicionarPonto from './pages/Pontos/adicionar';
+import AdicionarRelogio from './pages/Relogios/adicionar';
+import ListagemPontos from './pages/Pontos/listagem';
+import AdicionarMaquinas from './pages/Maquinas/Adicionar'
+import ListagemMaquinas from "./pages/Maquinas/listagem";
 import CadastroRotas from "./pages/rotas/adicionar";
 import ListagemRotas from "./pages/rotas/listagem";
-import ListagemRelogio from "./pages/relogios/listagem";
-import Leitura from './pages/leitura/listagem';
-import RealizarLeitura from "./pages/leitura/realizarLeitura";
-import CadastroVeiculos from "./pages/veiculos/Adicionar";
-import ListagemVeiculos from "./pages/veiculos/listagem";
+import ListagemRelogio from "./pages/Relogios/listagem";
+import Leitura from './pages/Leitura/leitura';
+import CadastroVeiculos from "./pages/Veiculos/Adicionar";
+import ListagemVeiculos from "./pages/Veiculos/listagem";
 
 
 function App() {
@@ -52,7 +51,6 @@ function App() {
                             <Route path="/veiculo/listagem" element={<ListagemVeiculos />} />
                             <Route path="/veiculo/editar/:id" element={<CadastroVeiculos />} />
                             <Route path="/leitura" element={<Leitura />} />
-                            <Route path="/leitura/:id" element={<RealizarLeitura />} />
                         </Routes>
                     </div>
                 </>

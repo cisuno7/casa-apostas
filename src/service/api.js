@@ -3,10 +3,8 @@ import { getToken } from './auth'
 import { logout } from "./auth";
 
 const api = axios.create({
-    //baseURL: "http://149.100.154.172:8080/api"
      baseURL: "http://localhost:8080/api"
-});
-
+});  
 api.interceptors.request.use(async config => {
     const token = getToken();
     const validity = localStorage.getItem("validity-token")

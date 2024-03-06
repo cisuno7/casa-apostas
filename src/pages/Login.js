@@ -6,6 +6,7 @@ import {login} from "../service/auth";
 
 export default function Login() {
     const [email, setEmail] = useState("");
+    const [username,setUsername]=useState("");
     const [password, setPassword] = useState("");
     function handleLogin(e) {
         e.preventDefault();

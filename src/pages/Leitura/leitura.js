@@ -55,7 +55,7 @@ console.log(selectedPonto);
      <button className="close-button" onClick={closeModal}>X</button> 
         <h1 className="modal-title">ABRIR PC LEITURA</h1>
 
-        {/* Tabs Headers */}
+     
         <div className="tabs">
             <div
                 className={`tab-header ${activeTab === 'pc' ? 'active' : ''}`}
